@@ -54,7 +54,7 @@ bool Participants::addParticipant(const int &otherId, const QString &otherFirstN
     return m_participantsModel->submitAll();
 }
 
-void Participants::getParticipants(QSqlTableModel *participants)
+void Participants::getParticipants(QSqlTableModel participants)
 {
     participants = m_participantsModel;
 }

@@ -17,7 +17,7 @@ class Participants
 public:
     explicit Participants(QSqlTableModel *model);
     ~Participants();
-    void getParticipants(QSqlTableModel *participants);
+    void getParticipants(QSqlTableModel participants);
     bool addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const QString& otherNationality,const int& otherAge,const float& otherWeight, const QString& otherExperience);
 
 private:

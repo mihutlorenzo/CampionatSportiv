@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+//#include <QSqlQueryModel>
 #include "participants.h"
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,10 @@ public:
 
 public slots:
     void addParticipant();
+
+private:
+     //void setupModel();
+     void readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password);
 
 private:
     Ui::MainWindow *ui;
