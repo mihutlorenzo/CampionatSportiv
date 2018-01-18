@@ -1,0 +1,57 @@
+#include "addfighterdialog.h"
+#include "ui_addfighterdialog.h"
+
+AddParticipantDialog::AddParticipantDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddFighterDialog)
+{
+    ui->setupUi(this);
+}
+
+AddParticipantDialog::~AddParticipantDialog()
+{
+    delete ui;
+}
+
+void AddParticipantDialog::data(int &id, Qstring &firstName, QString &lastName, QString &nationality, int &age, float &weight, QString &experience)
+{
+    id = ui->id->text();
+    firstName = ui->firstName->text();
+    lastName = ui->lastName->text();
+    nationality = ui->nationality->text();
+    age = ui->age->text();
+    weight = ui->weight->text();
+    experience = ui->experience->text();
+}
+
+void AddParticipantDialog::accept()
+{
+    bool ok = true;
+    ui->id->text().toInt(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this, tr("Add Id Error"), tr("Id should be a number"));
+    }
+    else
+    {
+        QDialog::accept();
+    }
+    ui->age->text().toInt(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this, tr("Add Age Error"), tr("Age should be a number"));
+    }
+    else
+    {
+        QDialog::accept();
+    }
+    ui->weight->text().toFloat(&ok);
+    if(!ok)
+    {
+        QMessageBox::warning(this, tr("Add Id Error"), tr("Id should be a number"));
+    }
+    else
+    {
+        QDialog::accept();
+    }
+}

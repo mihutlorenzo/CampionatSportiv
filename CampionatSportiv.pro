@@ -13,8 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    participants.cpp \
+    addparticipantdialog.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    participants.h \
+    addparticipantdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addparticipantdialog.ui
+
+    participantdialog.ui
