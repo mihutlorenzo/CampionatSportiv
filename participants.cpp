@@ -4,9 +4,9 @@
 #include <QtSql/QSqlRecord>
 
 
-Participants::Participants(QSqlTableModel *model)
+Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
 {
-    m_participantsModel = model;
+    m_participantsModel = new QSqlTableModel(&main,dataBase);
     m_participantsModel->setTable("Participants");
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
@@ -54,9 +54,9 @@ bool Participants::addParticipant(const int &otherId, const QString &otherFirstN
     return m_participantsModel->submitAll();
 }
 
-void Participants::getParticipants(QSqlTableModel participants)
+QSqlTableModel* Participants::getParticipants()
 {
-    participants = m_participantsModel;
+    return m_participantsModel;
 }
 
 

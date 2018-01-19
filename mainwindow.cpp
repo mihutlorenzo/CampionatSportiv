@@ -14,10 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_addParticipantDialog =new AddParticipantDialog(this);
     connect(ui->addButton,&QPushButton::clicked,this,&MainWindow::addParticipant);
     dataBase = QSqlDatabase::addDatabase("PSQL");
-
-    QSqlTableModel *model = new QSqlTableModel(this,dataBase);
-    m_participants = new Participants(model);
-
     QString hostName;
     QString databaseName;
     QString userName;
@@ -37,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->statusBar->showMessage(tr("Database connected!"));
     }
     //setupModel();
+    m_participants = new Participants(*this,dataBase);
+
 }
 
 MainWindow::~MainWindow()

@@ -15,11 +15,10 @@ class Participants
 {
 
 public:
-    explicit Participants(QSqlTableModel *model);
+    explicit Participants(MainWindow& main,QSqlDatabase& dataBase);
     ~Participants();
-    void getParticipants(QSqlTableModel participants);
     bool addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const QString& otherNationality,const int& otherAge,const float& otherWeight, const QString& otherExperience);
-
+    QSqlTableModel* getParticipants();
 private:
     QSqlTableModel* m_participantsModel;
 };
