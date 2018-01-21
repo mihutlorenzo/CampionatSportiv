@@ -4,11 +4,12 @@
 #include <QMainWindow>
 //#include <QSqlQueryModel>
 #include "participants.h"
+#include "controller.h"
 namespace Ui {
 class MainWindow;
 }
 class AddParticipantDialog;
-class Participants;
+class Controller;
 
 class MainWindow : public QMainWindow
 {
@@ -23,14 +24,10 @@ public slots:
     void addParticipant();
 
 private:
-     //void setupModel();
-     void readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password);
-
-private:
     Ui::MainWindow *ui;
     AddParticipantDialog *m_addParticipantDialog;
-    Participants *m_participants;
-    QSqlDatabase dataBase;
+    Controller* m_controller;
+
 };
 
 #endif // MAINWINDOW_H

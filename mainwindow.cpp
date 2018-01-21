@@ -11,19 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    m_addParticipantDialog =new AddParticipantDialog(this);
-    connect(ui->addButton,&QPushButton::clicked,this,&MainWindow::addParticipant);
-    dataBase = QSqlDatabase::addDatabase("PSQL");
-    QString hostName;
-    QString databaseName;
-    QString userName;
-    QString password;
-    readSettings(hostName, databaseName, userName, password);
-    dataBase.setHostName("baasu.db.elephantsql.com (baasu-01)");
-    dataBase.setDatabaseName("fygaxwgh");
-    dataBase.setUserName("fygaxwgh");
-    dataBase.setPassword("1eYLca-VNdAvVmfz1InoOT-MEo8wbntN");
-    bool ok = dataBase.open();
+    m_controller = new Controller(*this);
+    bool ok = m_controller->connectToDatabase();
     if(!ok)
     {
         ui->statusBar->showMessage(tr("Database not connected!"));
@@ -32,25 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->statusBar->showMessage(tr("Database connected!"));
     }
-    //setupModel();
-    m_participants = new Participants(*this,dataBase);
+    m_addParticipantDialog =new AddParticipantDialog(this);
+    connect(ui->addButton,&QPushButton::clicked,this,&MainWindow::addParticipant);
+    QSqlTableModel* participantsModel;
+    m_controller->getModels(participantsModel);
+    ui->personsTableView->setModel(participantsModel);
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password)
-{
-    qDebug() << "App dir path " << qApp->applicationDirPath();
-    QSettings s(qApp->applicationDirPath() + "/Championship.conf", QSettings::IniFormat);
-    hostName = s.value("HOSTNAME").toString();
-    databaseName = s.value("DATABASENAME").toString();
-    userName = s.value("USERNAME").toString();
-    password = s.value("PASSWORD").toString();
-    qDebug() << "Settings file name " << s.fileName();
 }
 
 
@@ -67,7 +48,7 @@ void MainWindow::addParticipant()
         float weight;
         QString experience;
         m_addParticipantDialog->data(id,firstName,lastName,nationality,age,weight,experience);
-        bool recordSuccesfull = m_participants->addParticipant(id,firstName,lastName,nationality,age,weight,experience);
+        bool recordSuccesfull = m_controller->addParticipant(id,firstName,lastName,nationality,age,weight,experience);
         if(!recordSuccesfull)
         {
             ui->statusBar->showMessage(tr("Values not submitted to remote database!"));
