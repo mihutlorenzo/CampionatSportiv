@@ -22,6 +22,8 @@ public:
 
 public slots:
     void addParticipant();
+    void setupTables();
+    void editParticipant();
 
 private:
     Ui::MainWindow *ui;

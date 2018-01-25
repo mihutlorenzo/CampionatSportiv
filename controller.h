@@ -20,6 +20,8 @@ public:
     bool connectToDatabase();
     void readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password);
     void getModels(QSqlTableModel * & model);
+    void deleteParticipant(QModelIndex &index);
+
 private:
     Participants *m_participants;
     QSqlDatabase dataBase;

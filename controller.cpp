@@ -4,6 +4,7 @@
 #include <QString>
 #include <QSqlError>
 #include <QApplication>
+#include <QtSql>
 
 Controller::Controller(MainWindow& main)
 {
@@ -24,11 +25,18 @@ bool Controller::connectToDatabase()
     QString databaseName;
     QString userName;
     QString password;
-    readSettings(hostName, databaseName, userName, password);
-    dataBase.setHostName(hostName);
-    dataBase.setDatabaseName(databaseName);
-    dataBase.setUserName(userName);
-    dataBase.setPassword(password);
+   // readSettings(hostName, databaseName, userName, password);
+    dataBase.setHostName("baasu.db.elephantsql.com (baasu-01)");
+    dataBase.setDatabaseName("obfjdotn");
+    dataBase.setUserName("obfjdotn");
+    dataBase.setPassword("OPKvhOuHOffso2ZoBuYUD9yQkQnkzMyd");
+    if( !dataBase.open() )
+    {
+       qDebug() << dataBase.lastError();
+        qFatal( "Failed to connect." );
+    }
+
+    qDebug( "Connected!" );
     return dataBase.open();
 
 }
@@ -47,6 +55,12 @@ void Controller::readSettings(QString &hostName, QString &databaseName, QString 
 void Controller::getModels(QSqlTableModel * &model)
 {
     model = m_participants->getParticipants();
+}
+
+
+void Controller::deleteParticipant(QModelIndex &index)
+{
+    m_participants->removeParticipant(index);
 }
 
 

@@ -2,6 +2,8 @@
 #include "QAbstractTableModel"
 #include <QtSql/QSqlField>
 #include <QtSql/QSqlRecord>
+#include <QSqlQuery>
+#include <QSqlError>
 
 
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
@@ -58,5 +60,21 @@ QSqlTableModel* Participants::getParticipants()
 {
     return m_participantsModel;
 }
+
+void Participants::removeParticipant(QModelIndex &index)
+{
+    int row = index.row();
+    QString cnp = m_participantsModel->itemData(index.sibling(row, 0))[Qt::EditRole].toString();
+    QSqlQuery query;
+    query.prepare("delete from participants where participants.cnp = :cnp");
+    query.bindValue(":cnp", cnp);
+    if(!query.exec())
+    {
+        qDebug() << query.lastError();
+    }
+    m_participantsModel->select();
+}
+
+
 
 

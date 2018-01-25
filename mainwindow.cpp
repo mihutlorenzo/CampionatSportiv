@@ -23,9 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     m_addParticipantDialog =new AddParticipantDialog(this);
     connect(ui->addButton,&QPushButton::clicked,this,&MainWindow::addParticipant);
-    QSqlTableModel* participantsModel;
-    m_controller->getModels(participantsModel);
-    ui->personsTableView->setModel(participantsModel);
+    connect(ui->removeButton,&QPushButton::clicked,this,&MainWindow::editParticipant);
+    setupTables();
 
 }
 
@@ -58,4 +57,25 @@ void MainWindow::addParticipant()
             ui->statusBar->showMessage(tr("Values submitted to remote database."));
         }
     }
+}
+
+void MainWindow::setupTables()
+{
+    QSqlTableModel* participantsModel;
+    m_controller->getModels(participantsModel);
+    ui->personsTableView->setModel(participantsModel);
+
+}
+
+void MainWindow::editParticipant()
+{
+    QItemSelectionModel *selModel = ui->personsTableView->selectionModel();
+    QModelIndexList selIndexes = selModel->selectedIndexes();
+    if(selIndexes.count() == 0)
+    {
+        return;
+    }
+    QModelIndex index = selIndexes[0];
+    m_controller->deleteParticipant(index);
+
 }

@@ -27,3 +27,8 @@ FORMS    += mainwindow.ui \
     addparticipantdialog.ui
 
     participantdialog.ui
+
+win32: LIBS += -LC:/Qt/5.10.0/msvc2017_64/plugins/sqldrivers/psql/lib/ -llibpq
+
+INCLUDEPATH += C:/Qt/5.10.0/msvc2017_64/plugins/sqldrivers/psql
+DEPENDPATH += C:/Qt/5.10.0/msvc2017_64/plugins/sqldrivers/psql
