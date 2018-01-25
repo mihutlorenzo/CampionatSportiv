@@ -20,20 +20,20 @@ bool Controller::addParticipant(const int &otherId, const QString &otherFirstNam
 
 bool Controller::connectToDatabase()
 {
-    dataBase = QSqlDatabase::addDatabase("PSQL");
+    dataBase = QSqlDatabase::addDatabase("QPSQL");
     QString hostName;
     QString databaseName;
     QString userName;
     QString password;
-   // readSettings(hostName, databaseName, userName, password);
-    dataBase.setHostName("baasu.db.elephantsql.com (baasu-01)");
-    dataBase.setDatabaseName("obfjdotn");
-    dataBase.setUserName("obfjdotn");
-    dataBase.setPassword("OPKvhOuHOffso2ZoBuYUD9yQkQnkzMyd");
+    readSettings(hostName, databaseName, userName, password);
+    dataBase.setHostName(hostName);
+    dataBase.setDatabaseName(databaseName);
+    dataBase.setUserName(userName);
+    dataBase.setPassword(password);
     if( !dataBase.open() )
     {
        qDebug() << dataBase.lastError();
-        qFatal( "Failed to connect." );
+        //qFatal( "Failed to connect." );
     }
 
     qDebug( "Connected!" );
@@ -44,6 +44,15 @@ bool Controller::connectToDatabase()
 void Controller::readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password)
 {
     qDebug() << "App dir path " << qApp->applicationDirPath();
+    QFileInfo fi(qApp->applicationDirPath() + "/Championship.conf");
+    if(!fi.exists())
+    {
+        qDebug() << "Settings file not found - " << fi.absoluteFilePath();
+    }
+    else
+    {
+        qDebug() << "Settings file found.";
+    }
     QSettings s(qApp->applicationDirPath() + "/Championship.conf", QSettings::IniFormat);
     hostName = s.value("HOSTNAME").toString();
     databaseName = s.value("DATABASENAME").toString();
