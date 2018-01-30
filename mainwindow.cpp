@@ -107,13 +107,17 @@ void MainWindow::addAgeCategory()
 
 void MainWindow::setupTables()
 {
-    QSqlRelationalTableModel* participantsModel;
-    m_participantController->getModels(participantsModel);
-    ui->participantsTableView->setModel(participantsModel);
+    /*QSqlRelationalTableModel* participantsModel;
+    m_participantController->getModels(participantsModel);*/
+    ui->participantsTableView->setModel(m_participantController->getModels());
 
-    QSqlTableModel* ageCategoryModel;
-    m_ageCategoryController->getModels(ageCategoryModel);
-    ui->ageCategoryTableView->setModel(ageCategoryModel);
+    /*QSqlTableModel* ageCategoryModel;
+    m_ageCategoryController->getModels(ageCategoryModel);*/
+
+
+
+
+    ui->ageCategoryTableView->setModel(m_ageCategoryController->getModels());
 
 }
 

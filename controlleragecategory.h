@@ -11,7 +11,7 @@ public:
     explicit ControllerAgeCategory(MainWindow& main,QSqlDatabase& dataBase);
 
     void addAgeCategory();
-    void getModels(QSqlTableModel * & model);
+    QSqlTableModel* getModels();
     void deleteParticipant(QModelIndex &index);
     void selectQuery();
 

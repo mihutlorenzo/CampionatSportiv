@@ -19,9 +19,9 @@ void ControllerAgeCategory::addAgeCategory()
     }
 }
 
-void ControllerAgeCategory::getModels(QSqlTableModel * &model)
+QSqlTableModel* ControllerAgeCategory::getModels()
 {
-    model = m_ageCategory->getAgeCategoryModel();
+    return m_ageCategory->getAgeCategoryModel();
 }
 
 

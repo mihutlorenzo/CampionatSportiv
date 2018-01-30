@@ -8,10 +8,9 @@
 
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
 {
-    m_participantsModel = new QSqlRelationalTableModel(&main,dataBase);
+    m_participantsModel = new QSqlTableModel(&main,dataBase);
     m_participantsModel->setTable("Participants");
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    m_participantsModel->setRelation(0, QSqlRelation("Categorie_Varsta", "id_varsta","varsta"));
 
     m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
     m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("First Name"));
@@ -70,7 +69,7 @@ void Participants::addParticipant(const int& otherId,const QString& otherFirstNa
     m_participantsModel->select();
 }
 
-QSqlRelationalTableModel* Participants::getParticipants()
+QSqlTableModel* Participants::getParticipants()
 {
     return m_participantsModel;
 }
