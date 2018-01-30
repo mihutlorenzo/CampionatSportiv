@@ -5,11 +5,16 @@
 //#include <QSqlQueryModel>
 #include "participants.h"
 #include "controller.h"
+#include <QSqlDatabase>
+#include "controlleragecategory.h"
+
 namespace Ui {
 class MainWindow;
 }
-class AddParticipantDialog;
+
 class Controller;
+class QActionGroup;
+class ControllerAgeCategory;
 
 class MainWindow : public QMainWindow
 {
@@ -18,17 +23,30 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    void setupTables();
+    void readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password);
+    bool connectToDatabase();
 
 public slots:
     void addParticipant();
-    void setupTables();
-    void editParticipant();
+    void addAgeCategory();
+
+
+
+    void removeParticipant();
+    void removeAgeCategory();
+
+    void onTableActionsTriggered(QAction *action);
+    void onRefreshDB();
 
 private:
     Ui::MainWindow *ui;
-    AddParticipantDialog *m_addParticipantDialog;
-    Controller* m_controller;
+    QSqlDatabase dataBase;
+    QActionGroup *m_tableActions;
+    Controller* m_participantController;
+    ControllerAgeCategory *m_ageCategoryController;
+
+
 
 };
 

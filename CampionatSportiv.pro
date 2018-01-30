@@ -16,15 +16,22 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     participants.cpp \
     addparticipantdialog.cpp \
-    controller.cpp
+    controller.cpp \
+    agecategory.cpp \
+    addagecategorydialog.cpp \
+    controlleragecategory.cpp
 
 HEADERS  += mainwindow.h \
     participants.h \
     addparticipantdialog.h \
-    controller.h
+    controller.h \
+    agecategory.h \
+    addagecategorydialog.h \
+    controlleragecategory.h
 
 FORMS    += mainwindow.ui \
-    addparticipantdialog.ui
+    addparticipantdialog.ui \
+    addagecategorydialog.ui
 
     participantdialog.ui
 

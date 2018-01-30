@@ -8,17 +8,18 @@
 
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
 {
-    m_participantsModel = new QSqlTableModel(&main,dataBase);
+    m_participantsModel = new QSqlRelationalTableModel(&main,dataBase);
     m_participantsModel->setTable("Participants");
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    m_participantsModel->setRelation(0, QSqlRelation("Categorie_Varsta", "id_varsta","varsta"));
 
     m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
     m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("First Name"));
     m_participantsModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Last Name"));
-    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Nationality"));
-    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Age"));
-    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Weight"));
-    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Experience"));
+    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Category Age Id"));
+    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Category Weight Id"));
+    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Category Experience Id"));
+    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Organisation Id"));
     m_participantsModel->select();
 }
 
@@ -27,36 +28,49 @@ Participants::~Participants()
     delete m_participantsModel;
 }
 
-bool Participants::addParticipant(const int &otherId, const QString &otherFirstName, const QString &otherLastName, const QString &otherNationality, const int &otherAge, const float &otherWeight, const QString &otherExperience)
+void Participants::addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId)
 {
-    QSqlField idField("id", QVariant::Int);
-    QSqlField firstNameField("firstname", QVariant::String);
-    QSqlField lastNameField("lastname", QVariant::String);
-    QSqlField nationalityField("nationality", QVariant::String);
-    QSqlField ageField("age", QVariant::Int);
-    QSqlField weightField("weight", QVariant::Double);
-    QSqlField experienceField("experience", QVariant::String);
+    /*QSqlField idField("Id", QVariant::Int);
+    QSqlField firstNameField("FirstName", QVariant::String);
+    QSqlField lastNameField("LastName", QVariant::String);
+    QSqlField categoryAgeIdField("CategoryAgeId", QVariant::Int);
+    QSqlField categoryWeightIdField("CategoryWeightId", QVariant::Int);
+    QSqlField categoryExperienceIdField("CategoryExperienceId", QVariant::Int);
+    QSqlField organisationIdField("OrganisationId", QVariant::Int);
     idField.setValue(otherId);
     firstNameField.setValue(otherFirstName);
     lastNameField.setValue(otherLastName);
-    nationalityField.setValue(otherNationality);
-    ageField.setValue(otherAge);
-    weightField.setValue(otherWeight);
-    experienceField.setValue(otherExperience);
+    categoryAgeIdField.setValue(otherCategoryAgeId);
+    categoryWeightIdField.setValue(otherCategoryWeightId);
+    categoryExperienceIdField.setValue(otherCategoryExperienceId);
+    organisationIdField.setValue(otherOrganisationId);
     QSqlRecord record;
     record.append(idField);
     record.append(firstNameField);
     record.append(lastNameField);
-    record.append(nationalityField);
-    record.append(ageField);
-    record.append(weightField);
-    record.append(experienceField);
-    m_participantsModel->insertRecord(-1, record);
+    record.append(categoryAgeIdField);
+    record.append(categoryWeightIdField);
+    record.append(categoryExperienceIdField);
+    record.append(organisationIdField);
+    m_participantsModel->insertRecord(-1, record);*/
 
-    return m_participantsModel->submitAll();
+    QSqlQuery query;
+    query.prepare("insert into participant values (:cnp,:firstname, :lastname, :idexperienta, :idgreutate, :idvarsta, :idorganizatie);");
+    query.bindValue(":cnp", otherId);
+    query.bindValue(":firstname", otherFirstName);
+    query.bindValue(":lastname", otherLastName);
+    query.bindValue(":idexperienta", otherCategoryExperienceId);
+    query.bindValue(":idgreutate", otherCategoryWeightId);
+    query.bindValue(":idvarsta", otherCategoryAgeId);
+    query.bindValue(":idorganizatie", otherOrganisationId);
+    if(!query.exec())
+    {
+        qDebug() << query.lastError();
+    }
+    m_participantsModel->select();
 }
 
-QSqlTableModel* Participants::getParticipants()
+QSqlRelationalTableModel* Participants::getParticipants()
 {
     return m_participantsModel;
 }

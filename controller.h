@@ -1,30 +1,36 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <QSqlDatabase>
+
 #include <QMainWindow>
-#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 #include "participants.h"
 #include "mainwindow.h"
+#include "addparticipantdialog.h"
 #include <QSettings>
 #include <QDebug>
 #include <QString>
 
 class Participants;
 class MainWindow;
+class AddAgeCategoryDialog;
+class AgeCategory;
+ class AddParticipantDialog ;
+
+
 class Controller
 {
 public:
-    explicit Controller(MainWindow& main);
-    bool addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const QString& otherNationality,const int& otherAge,const float& otherWeight, const QString& otherExperience);
-    bool connectToDatabase();
-    void readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password);
-    void getModels(QSqlTableModel * & model);
+    explicit Controller(MainWindow& main,QSqlDatabase& dataBase);
+    void addParticipant();
+    void getModels(QSqlRelationalTableModel * & model);
     void deleteParticipant(QModelIndex &index);
+
 
 private:
     Participants *m_participants;
-    QSqlDatabase dataBase;
+    AddParticipantDialog *m_addParticipantDialog;
+
 };
 
 #endif // CONTROLLER_H

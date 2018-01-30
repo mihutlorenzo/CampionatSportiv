@@ -1,4 +1,6 @@
 #include "controller.h"
+#include "addagecategorydialog.h"
+#include "agecategory.h"
 #include <QSettings>
 #include <QDebug>
 #include <QString>
@@ -6,62 +8,35 @@
 #include <QApplication>
 #include <QtSql>
 
-Controller::Controller(MainWindow& main)
+Controller::Controller(MainWindow& main,QSqlDatabase& dataBase)
 {
 
    m_participants = new Participants(main,dataBase);
+   m_addParticipantDialog =new AddParticipantDialog(&main);
+
 
 }
 
-bool Controller::addParticipant(const int &otherId, const QString &otherFirstName, const QString &otherLastName, const QString &otherNationality, const int &otherAge, const float &otherWeight, const QString &otherExperience)
+void Controller::addParticipant()
 {
-    return m_participants->addParticipant(otherId,otherFirstName,otherLastName,otherNationality,otherAge,otherWeight,otherExperience);
+    int r = m_addParticipantDialog->exec();
+    if(r == QDialog::Accepted)
+    {
+        int id;
+        QString firstName;
+        QString lastName;
+        int organisationId;
+        int categoryAgeId;
+        int categoryWeightId;
+        int categoryExperienceId;
+        m_addParticipantDialog->dataParticipant(id,firstName,lastName,categoryAgeId,categoryWeightId,categoryExperienceId,organisationId);
+        m_participants->addParticipant(id,firstName,lastName,categoryAgeId,categoryWeightId,categoryExperienceId,organisationId);
+    }
 }
 
-bool Controller::connectToDatabase()
-{
-    dataBase = QSqlDatabase::addDatabase("QPSQL");
-    QString hostName;
-    QString databaseName;
-    QString userName;
-    QString password;
-    readSettings(hostName, databaseName, userName, password);
-    dataBase.setHostName(hostName);
-    dataBase.setDatabaseName(databaseName);
-    dataBase.setUserName(userName);
-    dataBase.setPassword(password);
-    if( !dataBase.open() )
-    {
-       qDebug() << dataBase.lastError();
-        //qFatal( "Failed to connect." );
-    }
 
-    qDebug( "Connected!" );
-    return dataBase.open();
 
-}
-
-void Controller::readSettings(QString &hostName, QString &databaseName, QString &userName, QString &password)
-{
-    qDebug() << "App dir path " << qApp->applicationDirPath();
-    QFileInfo fi(qApp->applicationDirPath() + "/Championship.conf");
-    if(!fi.exists())
-    {
-        qDebug() << "Settings file not found - " << fi.absoluteFilePath();
-    }
-    else
-    {
-        qDebug() << "Settings file found.";
-    }
-    QSettings s(qApp->applicationDirPath() + "/Championship.conf", QSettings::IniFormat);
-    hostName = s.value("HOSTNAME").toString();
-    databaseName = s.value("DATABASENAME").toString();
-    userName = s.value("USERNAME").toString();
-    password = s.value("PASSWORD").toString();
-    qDebug() << "Settings file name " << s.fileName();
-}
-
-void Controller::getModels(QSqlTableModel * &model)
+void Controller::getModels(QSqlRelationalTableModel * &model)
 {
     model = m_participants->getParticipants();
 }

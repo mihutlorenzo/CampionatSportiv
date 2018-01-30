@@ -8,6 +8,7 @@ AddParticipantDialog::AddParticipantDialog(QWidget *parent) :
     ui(new Ui::AddParticipantDialog)
 {
     ui->setupUi(this);
+
 }
 
 AddParticipantDialog::~AddParticipantDialog()
@@ -15,15 +16,17 @@ AddParticipantDialog::~AddParticipantDialog()
     delete ui;
 }
 
-void AddParticipantDialog::data(int &id, QString &firstName, QString &lastName, QString &nationality, int &age, float &weight, QString &experience)
+void AddParticipantDialog::dataParticipant(int &id, QString &firstName, QString &lastName,
+                                           int &categoryAgeId, int &categoryWeightId, int &categoryExperienceId,int &organizationId)
 {
+
     id = ui->id->text().toInt();
     firstName = ui->firstName->text();
     lastName = ui->lastName->text();
-    nationality = ui->nationality->text();
-    age = ui->age->text().toInt();
-    weight = ui->weight->text().toFloat();
-    experience = ui->experience->text();
+    organizationId = ui->organizationId->text().toInt();
+    categoryAgeId = ui->categoryAgeId->text().toInt();
+    categoryWeightId = ui->categoryWeightId->text().toInt();
+    categoryExperienceId = ui->categoryExperienceId->text().toInt();
 }
 
 void AddParticipantDialog::accept()
@@ -56,4 +59,20 @@ void AddParticipantDialog::accept()
     {
         QDialog::accept();
     }
+}
+
+void AddParticipantDialog::setTextFieldForParticipant()
+{
+    ui->id->setEnabled(true);
+    ui->firstName->setEnabled(true);
+    ui->lastName->setEnabled(true);
+    ui->organizationId->setEnabled(true);
+    ui->organizationName->setEnabled(false);
+    ui->categoryAgeId->setEnabled(true);
+    ui->categoryExperienceId->setEnabled(true);
+    ui->categoryWeightId->setEnabled(true);
+
+    ui->age->setEnabled(false);
+    ui->weight->setEnabled(false);
+    ui->experience->setEnabled(false);
 }

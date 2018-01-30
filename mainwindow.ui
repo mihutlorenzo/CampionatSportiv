@@ -14,27 +14,27 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
-      <widget class="QWidget" name="page_3">
+      <widget class="QWidget" name="page_Participant">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTableView" name="personsTableView"/>
+         <widget class="QTableView" name="participantsTableView"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPushButton" name="addButton">
+           <widget class="QPushButton" name="addParticipantButton">
             <property name="text">
-             <string>Add</string>
+             <string>Add Participant</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="removeButton">
+           <widget class="QPushButton" name="removeParticipantButton">
             <property name="text">
-             <string>Remove</string>
+             <string>Delete Participant</string>
             </property>
            </widget>
           </item>
@@ -42,7 +42,102 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_4"/>
+      <widget class="QWidget" name="page_Age">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTableView" name="ageCategoryTableView"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="addAgeCategoryButton">
+          <property name="text">
+           <string>Add Age</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deleteAgeCategoryButton">
+          <property name="text">
+           <string>Delete Age</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Experience">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QTableView" name="experienceCategoryTableView"/>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="addExperienceCategoryButton">
+            <property name="text">
+             <string>Add Experience</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteExperienceCategoryButton">
+            <property name="text">
+             <string>Delete Experience</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Organization">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QTableView" name="organizationTableView"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="addOrganizationButton">
+            <property name="text">
+             <string>Add Organization</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteOrganizationButton">
+            <property name="text">
+             <string>Delete Organization</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Weight">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QTableView" name="weightCategoryTableView"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="addWeightCategoryButton">
+            <property name="text">
+             <string>Add Weight</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteWeightCategoryButton">
+            <property name="text">
+             <string>Delete Weight</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -58,10 +153,22 @@
    </property>
    <widget class="QMenu" name="menuParticipants">
     <property name="title">
-     <string>Participants</string>
+     <string>Tables</string>
     </property>
+    <addaction name="actionParticipants"/>
+    <addaction name="actionAge_Category"/>
+    <addaction name="actionWeight_Category"/>
+    <addaction name="actionExperience_Category"/>
+    <addaction name="actionOrganization"/>
+   </widget>
+   <widget class="QMenu" name="menuEditTable">
+    <property name="title">
+     <string>Database</string>
+    </property>
+    <addaction name="actionRefresh"/>
    </widget>
    <addaction name="menuParticipants"/>
+   <addaction name="menuEditTable"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -72,6 +179,46 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionParticipants">
+   <property name="text">
+    <string>Participants</string>
+   </property>
+  </action>
+  <action name="actionAge_Category">
+   <property name="text">
+    <string>Age Category</string>
+   </property>
+  </action>
+  <action name="actionAddParticipant">
+   <property name="text">
+    <string>AddParticipant</string>
+   </property>
+  </action>
+  <action name="actionAddAgeCategory">
+   <property name="text">
+    <string>AddAgeCategory</string>
+   </property>
+  </action>
+  <action name="actionWeight_Category">
+   <property name="text">
+    <string>Weight Category</string>
+   </property>
+  </action>
+  <action name="actionExperience_Category">
+   <property name="text">
+    <string>Experience Category</string>
+   </property>
+  </action>
+  <action name="actionOrganization">
+   <property name="text">
+    <string>Organization</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

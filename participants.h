@@ -6,7 +6,8 @@
 //#include <QStandardItemModel>
 #include <QtSql/QSqlDatabase>
 #include "mainwindow.h"
-#include <QtSql/QSqlTableModel>
+#include <QtSql/QSqlRelationalTableModel>
+
 
 class MainWindow;
 class QSqlDatabase;
@@ -17,12 +18,13 @@ class Participants
 public:
     explicit Participants(MainWindow& main,QSqlDatabase& dataBase);
     ~Participants();
-    bool addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const QString& otherNationality,const int& otherAge,const float& otherWeight, const QString& otherExperience);
-    QSqlTableModel* getParticipants();
+    void addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId);
+    QSqlRelationalTableModel* getParticipants();
     void removeParticipant(QModelIndex &index);
 
+
 private:
-    QSqlTableModel* m_participantsModel;
+    QSqlRelationalTableModel* m_participantsModel;
 };
 
 #endif // PARTICIPANT_H

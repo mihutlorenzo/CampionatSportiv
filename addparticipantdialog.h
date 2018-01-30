@@ -15,8 +15,9 @@ public:
     explicit AddParticipantDialog(QWidget *parent = 0);
     ~AddParticipantDialog();
 
-    void data(int& id,QString& firstName, QString& lastName, QString& nationality, int& age, float& weight, QString& experience);
-    void setData(const int& id,const QString& firstName, const QString& lastName, const QString& nationality,const int& age,const float& weight, const QString& experience);
+    void dataParticipant(int &id, QString &firstName, QString &lastName,
+                         int &categoryAgeId, int &categoryWeightId, int &categoryExperienceId,int &organizationId);
+    void setTextFieldForParticipant();
 protected:
     void accept() override;
 
