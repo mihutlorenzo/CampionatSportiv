@@ -19,7 +19,10 @@ SOURCES += main.cpp\
     controller.cpp \
     agecategory.cpp \
     addagecategorydialog.cpp \
-    controlleragecategory.cpp
+    controlleragecategory.cpp \
+    weightcategory.cpp \
+    experiencecategory.cpp \
+    organisation.cpp
 
 HEADERS  += mainwindow.h \
     participants.h \
@@ -27,7 +30,10 @@ HEADERS  += mainwindow.h \
     controller.h \
     agecategory.h \
     addagecategorydialog.h \
-    controlleragecategory.h
+    controlleragecategory.h \
+    weightcategory.h \
+    experiencecategory.h \
+    organisation.h
 
 FORMS    += mainwindow.ui \
     addparticipantdialog.ui \
