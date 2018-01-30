@@ -22,7 +22,7 @@ public:
 
 private:
      ExperienceCategory *m_experienceCategory;
-     AddWeightCategoryDialog *m_addExperienceCategoryDialog;
+     AddExperienceCategoryDialog *m_addExperienceCategoryDialog;
 };
 
 #endif // CONTROLLEREXPERIENCECATEGORY_H

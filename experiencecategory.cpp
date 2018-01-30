@@ -25,7 +25,7 @@ QSqlTableModel* ExperienceCategory::getExperienceCategoryModel()
     return m_experienceCategoryModel;
 }
 
-void ExperienceCategory::addExperienceCategory(const int &id, const int &age)
+void ExperienceCategory::addExperienceCategory(const int &id, const QString &age)
 {
     QSqlQuery query;
     query.prepare("insert into Categorie_Experienta values (:id,:age);");

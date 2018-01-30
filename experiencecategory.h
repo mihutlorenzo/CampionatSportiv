@@ -16,7 +16,7 @@ public:
 
     QSqlTableModel* getExperienceCategoryModel();
     void removeExperienceCategory(QModelIndex &index);
-    void addExperienceCategory(const int& id, const int& age);
+    void addExperienceCategory(const int& id, const QString& age);
     void selectQuery();
 
 

@@ -1,6 +1,6 @@
 #include "controllerexperiencecategory.h"
 
-ControllerExperienceCategory::ControllerExperienceCategory()
+ControllerExperienceCategory::ControllerExperienceCategory(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_experienceCategory= new ExperienceCategory(main,dataBase);
     m_addExperienceCategoryDialog = new AddExperienceCategoryDialog(&main);

@@ -6,11 +6,11 @@
 AgeCategory::AgeCategory(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_ageCategoryModel = new QSqlTableModel(&main,dataBase);
-    m_ageCategoryModel->setTable("Age Category");
+    m_ageCategoryModel->setTable("Categorie_Varsta");
     m_ageCategoryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_ageCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_ageCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Age"));
+    m_ageCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id_Varsta"));
+    m_ageCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Varsta"));
     m_ageCategoryModel->select();
 
 }
