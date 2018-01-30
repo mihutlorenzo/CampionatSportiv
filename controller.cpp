@@ -22,7 +22,7 @@ void Controller::addParticipant()
     int r = m_addParticipantDialog->exec();
     if(r == QDialog::Accepted)
     {
-        int id;
+        QString id;
         QString firstName;
         QString lastName;
         int organisationId;

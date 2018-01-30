@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddAgeCategoryDialog</class>
- <widget class="QDialog" name="AddAgeCategoryDialog">
+ <class>AddWeightCategoryDialog</class>
+ <widget class="QDialog" name="AddWeightCategoryDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>114</height>
+    <height>129</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,22 +17,22 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Age category id</string>
+      <string>Weight category id</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLineEdit" name="categoryAgeId"/>
+    <widget class="QLineEdit" name="categoryWeightId"/>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Age</string>
+      <string>Weight</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLineEdit" name="age"/>
+    <widget class="QLineEdit" name="weight"/>
    </item>
    <item row="2" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -51,7 +51,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AddAgeCategoryDialog</receiver>
+   <receiver>AddWeightCategoryDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -67,7 +67,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AddAgeCategoryDialog</receiver>
+   <receiver>AddWeightCategoryDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

@@ -7,6 +7,7 @@
 #include "controller.h"
 #include <QSqlDatabase>
 #include "controlleragecategory.h"
+#include "controllerweightcategory.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,6 +16,7 @@ class MainWindow;
 class Controller;
 class QActionGroup;
 class ControllerAgeCategory;
+class ControllerWeightCategory;
 
 class MainWindow : public QMainWindow
 {
@@ -30,11 +32,12 @@ public:
 public slots:
     void addParticipant();
     void addAgeCategory();
-
+    void addWeightCategory();
 
 
     void removeParticipant();
     void removeAgeCategory();
+    void removeWeightCategory();
 
     void onTableActionsTriggered(QAction *action);
     void onRefreshDB();
@@ -45,7 +48,7 @@ private:
     QActionGroup *m_tableActions;
     Controller* m_participantController;
     ControllerAgeCategory *m_ageCategoryController;
-
+    ControllerWeightCategory *m_weightCategoryController;
 
 
 };

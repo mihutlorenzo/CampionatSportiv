@@ -18,7 +18,7 @@ class Participants
 public:
     explicit Participants(MainWindow& main,QSqlDatabase& dataBase);
     ~Participants();
-    void addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId);
+    void addParticipant(const QString& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId);
     QSqlTableModel* getParticipants();
     void removeParticipant(QModelIndex &index);
 

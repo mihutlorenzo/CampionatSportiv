@@ -30,7 +30,7 @@ void Organisation::addOrganisation(const int &id, const int &age)
     QSqlQuery query;
     query.prepare("insert into Organizatie values (:id,:name);");
     query.bindValue(":id", id);
-    query.bindValue(":age", age);
+    query.bindValue(":name", age);
     if(!query.exec())
     {
         qDebug() << query.lastError();
@@ -50,7 +50,7 @@ void Organisation::removeOrganisation(QModelIndex &index)
     {
         qDebug() << query.lastError();
     }
-    m_ageCategoryModel->select();
+    m_OrganisationModel->select();
 }
 
 void Organisation::selectQuery()

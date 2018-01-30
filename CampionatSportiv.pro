@@ -22,7 +22,12 @@ SOURCES += main.cpp\
     controlleragecategory.cpp \
     weightcategory.cpp \
     experiencecategory.cpp \
-    organisation.cpp
+    organisation.cpp \
+    addweightcategorydialog.cpp \
+    addexperiencecategorydialog.cpp \
+    addorganizationdialog.cpp \
+    controllerweightcategory.cpp
+
 
 HEADERS  += mainwindow.h \
     participants.h \
@@ -33,12 +38,19 @@ HEADERS  += mainwindow.h \
     controlleragecategory.h \
     weightcategory.h \
     experiencecategory.h \
-    organisation.h
+    organisation.h \
+    addweightcategorydialog.h \
+    addexperiencecategorydialog.h \
+    addorganizationdialog.h \
+    controllerweightcategory.h
+
 
 FORMS    += mainwindow.ui \
     addparticipantdialog.ui \
-    addagecategorydialog.ui
-
+    addagecategorydialog.ui \
+    addweightcategorydialog.ui \
+    addexperiencecategorydialog.ui \
+    addorganizationdialog.ui
     participantdialog.ui
 
 win32: LIBS += -LC:/Qt/5.10.0/msvc2017_64/plugins/sqldrivers/psql/lib/ -llibpq

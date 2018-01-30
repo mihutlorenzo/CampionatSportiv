@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_participantController = new Controller(*this,dataBase);
     m_ageCategoryController = new ControllerAgeCategory(*this,dataBase);
+    m_weightCategoryController = new ControllerWeightCategory(*this,dataBase);
 
     m_tableActions = new QActionGroup(this);
     m_tableActions->addAction(ui->actionParticipants);
@@ -40,6 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->removeParticipantButton,&QPushButton::clicked,this,&MainWindow::removeParticipant);
     connect(ui->addAgeCategoryButton,&QPushButton::clicked,this,&MainWindow::addAgeCategory);
     connect(ui->deleteAgeCategoryButton,&QPushButton::clicked,this,&MainWindow::removeAgeCategory);
+    connect(ui->addWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::addWeightCategory);
+    connect(ui->deleteWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::removeWeightCategory);
+
 
 
 
@@ -105,6 +109,11 @@ void MainWindow::addAgeCategory()
     m_ageCategoryController->addAgeCategory();
 }
 
+void MainWindow::addWeightCategory()
+{
+    m_weightCategoryController->addWeightCategory();
+}
+
 void MainWindow::setupTables()
 {
     /*QSqlRelationalTableModel* participantsModel;
@@ -118,6 +127,8 @@ void MainWindow::setupTables()
 
 
     ui->ageCategoryTableView->setModel(m_ageCategoryController->getModels());
+
+    ui->weightCategoryTableView->setModel(m_weightCategoryController->getModels());
 
 }
 
@@ -143,7 +154,19 @@ void MainWindow::removeAgeCategory()
         return;
     }
     QModelIndex index = selIndexes[0];
-    m_ageCategoryController->deleteParticipant(index);
+    m_ageCategoryController->deleteAgeCategory(index);
+}
+
+void MainWindow::removeWeightCategory()
+{
+    QItemSelectionModel *selModel = ui->weightCategoryTableView->selectionModel();
+    QModelIndexList selIndexes = selModel->selectedIndexes();
+    if(selIndexes.count() == 0)
+    {
+        return;
+    }
+    QModelIndex index = selIndexes[0];
+    m_weightCategoryController->deleteWeightCategory(index);
 }
 
 void MainWindow::onTableActionsTriggered(QAction *action)

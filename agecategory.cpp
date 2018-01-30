@@ -36,6 +36,15 @@ void AgeCategory::addAgeCategory(const int &id, const int &age)
         qDebug() << query.lastError();
     }
     m_ageCategoryModel->select();
+
+    if(!m_ageCategoryModel->submitAll())
+    {
+        qDebug() << "Values not submitted to remote database.";
+    }
+    else
+    {
+        qDebug() << "Values submitted to remote database.";
+    }
 }
 
 

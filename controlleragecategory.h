@@ -12,7 +12,7 @@ public:
 
     void addAgeCategory();
     QSqlTableModel* getModels();
-    void deleteParticipant(QModelIndex &index);
+    void deleteAgeCategory(QModelIndex &index);
     void selectQuery();
 
 private:

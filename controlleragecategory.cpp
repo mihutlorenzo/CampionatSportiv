@@ -25,7 +25,7 @@ QSqlTableModel* ControllerAgeCategory::getModels()
 }
 
 
-void ControllerAgeCategory::deleteParticipant(QModelIndex &index)
+void ControllerAgeCategory::deleteAgeCategory(QModelIndex &index)
 {
     m_ageCategory->removeAgeCategory(index);
 }

@@ -10,7 +10,7 @@ WeightCategory::WeightCategory(MainWindow& main,QSqlDatabase& dataBase)
     m_weightCategoryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     m_weightCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_weightCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Age"));
+    m_weightCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Weight"));
     m_weightCategoryModel->select();
 
 }
@@ -25,12 +25,12 @@ QSqlTableModel* WeightCategory::getWeightCategoryModel()
     return m_weightCategoryModel;
 }
 
-void WeightCategory::addWeightCategory(const int &id, const int &age)
+void WeightCategory::addWeightCategory(const int &id, const QString &weight)
 {
     QSqlQuery query;
     query.prepare("insert into Categorie_Greutate values (:id,:age);");
     query.bindValue(":id", id);
-    query.bindValue(":age", age);
+    query.bindValue(":age", weight);
     if(!query.exec())
     {
         qDebug() << query.lastError();

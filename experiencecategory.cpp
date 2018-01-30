@@ -10,7 +10,7 @@ ExperienceCategory::ExperienceCategory(MainWindow& main,QSqlDatabase& dataBase)
     m_experienceCategoryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     m_experienceCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_experienceCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Age"));
+    m_experienceCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Experience"));
     m_experienceCategoryModel->select();
 
 }
@@ -53,7 +53,7 @@ void ExperienceCategory::removeExperienceCategory(QModelIndex &index)
     m_experienceCategoryModel->select();
 }
 
-void AgeCategory::selectQuery()
+void ExperienceCategory::selectQuery()
 {
     m_experienceCategoryModel->select();
 }

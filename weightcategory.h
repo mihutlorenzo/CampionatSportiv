@@ -15,7 +15,7 @@ public:
 
     QSqlTableModel* getWeightCategoryModel();
     void removeWeightCategory(QModelIndex &index);
-    void addWeightCategory(const int& id, const int& age);
+    void addWeightCategory(const int& id, const QString& age);
     void selectQuery();
 
 

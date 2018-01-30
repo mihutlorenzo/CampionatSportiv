@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>531</width>
-    <height>381</height>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,86 +45,46 @@
     <widget class="QLineEdit" name="lastName"/>
    </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Organization' s id</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="organizationId"/>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_8">
-     <property name="text">
-      <string>Organization' s name</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="organizationName"/>
-   </item>
-   <item row="5" column="0">
     <widget class="QLabel" name="label_9">
      <property name="text">
       <string>Category age id</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
+   <item row="3" column="1">
     <widget class="QLineEdit" name="categoryAgeId"/>
    </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Age</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QLineEdit" name="age"/>
-   </item>
-   <item row="7" column="0">
+   <item row="4" column="0">
     <widget class="QLabel" name="label_10">
      <property name="text">
-      <string>Category weight id id</string>
+      <string>Category weight id </string>
      </property>
     </widget>
    </item>
-   <item row="7" column="1">
+   <item row="4" column="1">
     <widget class="QLineEdit" name="categoryWeightId"/>
    </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>Weight</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QLineEdit" name="weight"/>
-   </item>
-   <item row="9" column="0">
+   <item row="5" column="0">
     <widget class="QLabel" name="label_11">
      <property name="text">
       <string>Category experience Id</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="5" column="1">
     <widget class="QLineEdit" name="categoryExperienceId"/>
    </item>
-   <item row="10" column="0">
-    <widget class="QLabel" name="label_7">
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Experience</string>
+      <string>Organization' s id</string>
      </property>
     </widget>
    </item>
-   <item row="10" column="1">
-    <widget class="QLineEdit" name="experience"/>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="organizationId"/>
    </item>
-   <item row="11" column="1">
+   <item row="7" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

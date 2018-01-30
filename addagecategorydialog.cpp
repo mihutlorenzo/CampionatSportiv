@@ -33,7 +33,7 @@ void AddAgeCategoryDialog::accept()
     {
         QDialog::accept();
     }
-    ui->age->text().toInt(&ok);
+    ui->categoryAgeId->text().toInt(&ok);
     if(!ok)
     {
         QMessageBox::warning(this, tr("Add Age Error"), tr("Age should be a number"));
@@ -42,5 +42,4 @@ void AddAgeCategoryDialog::accept()
     {
         QDialog::accept();
     }
-
 }

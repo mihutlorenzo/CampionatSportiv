@@ -4,6 +4,8 @@
 #include <QtSql/QSqlRecord>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QDebug>
+
 
 
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
@@ -27,7 +29,7 @@ Participants::~Participants()
     delete m_participantsModel;
 }
 
-void Participants::addParticipant(const int& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId)
+void Participants::addParticipant(const QString& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId)
 {
     /*QSqlField idField("Id", QVariant::Int);
     QSqlField firstNameField("FirstName", QVariant::String);
@@ -54,7 +56,7 @@ void Participants::addParticipant(const int& otherId,const QString& otherFirstNa
     m_participantsModel->insertRecord(-1, record);*/
 
     QSqlQuery query;
-    query.prepare("insert into participant values (:cnp,:firstname, :lastname, :idexperienta, :idgreutate, :idvarsta, :idorganizatie);");
+    query.prepare("insert into participant values (:cnp,:firstname, :lastname, :idvarsta, :idgreutate, :idexperienta, :idorganizatie);");
     query.bindValue(":cnp", otherId);
     query.bindValue(":firstname", otherFirstName);
     query.bindValue(":lastname", otherLastName);
@@ -67,6 +69,14 @@ void Participants::addParticipant(const int& otherId,const QString& otherFirstNa
         qDebug() << query.lastError();
     }
     m_participantsModel->select();
+    if(!m_participantsModel->submitAll())
+    {
+        qDebug() << "Values not submitted to remote database.";
+    }
+    else
+    {
+        qDebug() << "Values submitted to remote database.";
+    }
 }
 
 QSqlTableModel* Participants::getParticipants()
@@ -79,7 +89,7 @@ void Participants::removeParticipant(QModelIndex &index)
     int row = index.row();
     QString cnp = m_participantsModel->itemData(index.sibling(row, 0))[Qt::EditRole].toString();
     QSqlQuery query;
-    query.prepare("delete from participants where participants.cnp = :cnp");
+    query.prepare("delete from participant where participant.cnp = :cnp");
     query.bindValue(":cnp", cnp);
     if(!query.exec())
     {
