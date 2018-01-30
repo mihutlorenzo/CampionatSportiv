@@ -6,11 +6,11 @@
 ExperienceCategory::ExperienceCategory(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_experienceCategoryModel = new QSqlTableModel(&main,dataBase);
-    m_experienceCategoryModel->setTable("Experience Category");
+    m_experienceCategoryModel->setTable("Categorie_Experienta");
     m_experienceCategoryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_experienceCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_experienceCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Experience"));
+    m_experienceCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id_Experienta"));
+    m_experienceCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Experienta"));
     m_experienceCategoryModel->select();
 
 }

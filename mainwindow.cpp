@@ -43,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->deleteAgeCategoryButton,&QPushButton::clicked,this,&MainWindow::removeAgeCategory);
     connect(ui->addWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::addWeightCategory);
     connect(ui->deleteWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::removeWeightCategory);
+    connect(ui->addOrganizationButton,&QPushButton::clicked,this,&MainWindow::addOrganization);
+    connect(ui->deleteOrganizationButton,&QPushButton::clicked,this,&MainWindow::removeOrganization);
+    connect(ui->addExperienceCategoryButton,&QPushButton::clicked,this,&MainWindow::addExperienceCategory);
+    connect(ui->deleteExperienceCategoryButton,&QPushButton::clicked,this,&MainWindow::removeExperienceCategory);
 
 
 
@@ -114,6 +118,18 @@ void MainWindow::addWeightCategory()
     m_weightCategoryController->addWeightCategory();
 }
 
+
+void MainWindow::addExperienceCategory()
+{
+
+    m_experienceCategoryController->addExperienceCategory();
+}
+
+void MainWindow::addOrganization()
+{
+    m_organizationController->addOrganization();
+}
+
 void MainWindow::setupTables()
 {
     /*QSqlRelationalTableModel* participantsModel;
@@ -129,6 +145,8 @@ void MainWindow::setupTables()
     ui->ageCategoryTableView->setModel(m_ageCategoryController->getModels());
 
     ui->weightCategoryTableView->setModel(m_weightCategoryController->getModels());
+    ui->experienceCategoryTableView->setModel(m_experienceCategoryController->getModels());
+    ui->organizationTableView->setModel(m_organizationController->getModels());
 
 }
 
@@ -157,6 +175,18 @@ void MainWindow::removeAgeCategory()
     m_ageCategoryController->deleteAgeCategory(index);
 }
 
+void MainWindow::removeExperienceCategory()
+{
+    QItemSelectionModel *selModel = ui->experienceCategoryTableView->selectionModel();
+    QModelIndexList selIndexes = selModel->selectedIndexes();
+    if(selIndexes.count() == 0)
+    {
+        return;
+    }
+    QModelIndex index = selIndexes[0];
+    m_experienceCategoryController->deleteExperienceCategory(index);
+}
+
 void MainWindow::removeWeightCategory()
 {
     QItemSelectionModel *selModel = ui->weightCategoryTableView->selectionModel();
@@ -168,6 +198,19 @@ void MainWindow::removeWeightCategory()
     QModelIndex index = selIndexes[0];
     m_weightCategoryController->deleteWeightCategory(index);
 }
+
+void MainWindow::removeOrganization()
+{
+    QItemSelectionModel *selModel = ui->organizationTableView->selectionModel();
+    QModelIndexList selIndexes = selModel->selectedIndexes();
+    if(selIndexes.count() == 0)
+    {
+        return;
+    }
+    QModelIndex index = selIndexes[0];
+    m_organizationController->deleteOrganization(index);
+}
+
 
 void MainWindow::onTableActionsTriggered(QAction *action)
 {

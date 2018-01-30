@@ -14,14 +14,14 @@ public:
     explicit ExperienceCategory(MainWindow& main,QSqlDatabase& dataBase);
     ~ExperienceCategory();
 
-    QSqlTableModel* getExperienceCategoryModel();
+    QSqlTableModel *getExperienceCategoryModel();
     void removeExperienceCategory(QModelIndex &index);
     void addExperienceCategory(const int& id, const QString& age);
     void selectQuery();
 
 
 private:
-    QSqlTableModel* m_experienceCategoryModel;
+    QSqlTableModel *m_experienceCategoryModel;
 };
 
 

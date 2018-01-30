@@ -6,11 +6,11 @@
 WeightCategory::WeightCategory(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_weightCategoryModel = new QSqlTableModel(&main,dataBase);
-    m_weightCategoryModel->setTable("Weight Category");
+    m_weightCategoryModel->setTable("Categorie_Greutate");
     m_weightCategoryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_weightCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_weightCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Weight"));
+    m_weightCategoryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id_Greutate"));
+    m_weightCategoryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Greutate"));
     m_weightCategoryModel->select();
 
 }

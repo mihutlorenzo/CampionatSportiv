@@ -6,11 +6,11 @@
 Organisation::Organisation(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_OrganisationModel = new QSqlTableModel(&main,dataBase);
-    m_OrganisationModel->setTable("Organisation");
+    m_OrganisationModel->setTable("Organizatie");
     m_OrganisationModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_OrganisationModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_OrganisationModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Name"));
+    m_OrganisationModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id_Organizatie"));
+    m_OrganisationModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nume"));
     m_OrganisationModel->select();
 
 }
@@ -25,7 +25,7 @@ QSqlTableModel* Organisation::getOrganisationModel()
     return m_OrganisationModel;
 }
 
-void Organisation::addOrganisation(const int &id, const int &age)
+void Organisation::addOrganisation(const int &id, const QString &age)
 {
     QSqlQuery query;
     query.prepare("insert into Organizatie values (:id,:name);");
