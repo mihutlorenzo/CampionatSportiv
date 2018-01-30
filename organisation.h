@@ -16,7 +16,7 @@ public:
 
     QSqlTableModel* getOrganisationModel();
     void removeOrganisation(QModelIndex &index);
-    void addOrganisation(const int& id, const int& age);
+    void addOrganisation(const int& id, const QString& name);
     void selectQuery();
 
 

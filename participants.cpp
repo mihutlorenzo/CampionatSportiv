@@ -11,16 +11,16 @@
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
 {
     m_participantsModel = new QSqlTableModel(&main,dataBase);
-    m_participantsModel->setTable("Participants");
+    m_participantsModel->setTable("Participant");
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Id"));
-    m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("First Name"));
-    m_participantsModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Last Name"));
-    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Category Age Id"));
-    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Category Weight Id"));
-    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Category Experience Id"));
-    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Organisation Id"));
+    m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Cnp"));
+    m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nume"));
+    m_participantsModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenume"));
+    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Id_Varsta"));
+    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Id_Greutate"));
+    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Id_Experienta"));
+    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Id_Organizatie"));
     m_participantsModel->select();
 }
 
