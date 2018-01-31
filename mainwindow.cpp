@@ -259,7 +259,7 @@ void MainWindow::onTableActionsTriggered(QAction *action)
     }
     if(action == ui->actionRanking)
     {
-        ui->stackedWidget->setCurrentIndex(5);
+        ui->stackedWidget->setCurrentIndex(6);
         //ui->tablePersons->selectionModel()->clearSelection();
     }
 }
