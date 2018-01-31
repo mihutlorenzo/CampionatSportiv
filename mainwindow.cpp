@@ -8,6 +8,7 @@
 #include <QApplication>
 #include <QSqlError>
 #include <QtSql>
+#include <QSqlQueryModel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_participantController = new Controller(*this,dataBase);
     m_ageCategoryController = new ControllerAgeCategory(*this,dataBase);
     m_weightCategoryController = new ControllerWeightCategory(*this,dataBase);
+    m_experienceCategoryController = new ControllerExperienceCategory(*this,dataBase);
+    m_organizationController = new ControllerOrganisation(*this,dataBase);
 
     m_tableActions = new QActionGroup(this);
     m_tableActions->addAction(ui->actionParticipants);
@@ -43,12 +46,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->deleteAgeCategoryButton,&QPushButton::clicked,this,&MainWindow::removeAgeCategory);
     connect(ui->addWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::addWeightCategory);
     connect(ui->deleteWeightCategoryButton,&QPushButton::clicked,this,&MainWindow::removeWeightCategory);
-    connect(ui->addOrganizationButton,&QPushButton::clicked,this,&MainWindow::addOrganization);
-    connect(ui->deleteOrganizationButton,&QPushButton::clicked,this,&MainWindow::removeOrganization);
     connect(ui->addExperienceCategoryButton,&QPushButton::clicked,this,&MainWindow::addExperienceCategory);
     connect(ui->deleteExperienceCategoryButton,&QPushButton::clicked,this,&MainWindow::removeExperienceCategory);
-
-
+    connect(ui->addOrganizationButton,&QPushButton::clicked,this,&MainWindow::addOrganization);
+    connect(ui->deleteOrganizationButton,&QPushButton::clicked,this,&MainWindow::removeOrganization);
 
 
     setupTables();
@@ -118,10 +119,9 @@ void MainWindow::addWeightCategory()
     m_weightCategoryController->addWeightCategory();
 }
 
-
 void MainWindow::addExperienceCategory()
-{
 
+{
     m_experienceCategoryController->addExperienceCategory();
 }
 
@@ -132,21 +132,23 @@ void MainWindow::addOrganization()
 
 void MainWindow::setupTables()
 {
-    /*QSqlRelationalTableModel* participantsModel;
-    m_participantController->getModels(participantsModel);*/
+
     ui->participantsTableView->setModel(m_participantController->getModels());
-
-    /*QSqlTableModel* ageCategoryModel;
-    m_ageCategoryController->getModels(ageCategoryModel);*/
-
-
-
-
     ui->ageCategoryTableView->setModel(m_ageCategoryController->getModels());
 
     ui->weightCategoryTableView->setModel(m_weightCategoryController->getModels());
     ui->experienceCategoryTableView->setModel(m_experienceCategoryController->getModels());
     ui->organizationTableView->setModel(m_organizationController->getModels());
+
+
+    /*QSqlQueryModel *m_workingHoursJoinPersonsModel = new QSqlQueryModel(this);
+    QSqlQuery query("SELECT * from Categorie_Varsta");
+    m_workingHoursJoinPersonsModel->setQuery(query);
+    m_workingHoursJoinPersonsModel->setHeaderData(0, Qt::Horizontal, tr("Id"));
+    m_workingHoursJoinPersonsModel->setHeaderData(1, Qt::Horizontal, tr("Varsta"));
+
+    ui->ageCategoryTableView->setModel(m_workingHoursJoinPersonsModel);*/
+
 
 }
 
@@ -175,17 +177,17 @@ void MainWindow::removeAgeCategory()
     m_ageCategoryController->deleteAgeCategory(index);
 }
 
-void MainWindow::removeExperienceCategory()
-{
-    QItemSelectionModel *selModel = ui->experienceCategoryTableView->selectionModel();
-    QModelIndexList selIndexes = selModel->selectedIndexes();
-    if(selIndexes.count() == 0)
-    {
-        return;
-    }
-    QModelIndex index = selIndexes[0];
-    m_experienceCategoryController->deleteExperienceCategory(index);
-}
+//void MainWindow::removeExperienceCategory()
+//{
+//    QItemSelectionModel *selModel = ui->experienceCategoryTableView->selectionModel();
+//    QModelIndexList selIndexes = selModel->selectedIndexes();
+//    if(selIndexes.count() == 0)
+//    {
+//        return;
+//    }
+//    QModelIndex index = selIndexes[0];
+//    m_experienceCategoryController->deleteExperienceCategory(index);
+//}
 
 void MainWindow::removeWeightCategory()
 {
@@ -198,6 +200,20 @@ void MainWindow::removeWeightCategory()
     QModelIndex index = selIndexes[0];
     m_weightCategoryController->deleteWeightCategory(index);
 }
+
+
+void MainWindow::removeExperienceCategory()
+{
+    QItemSelectionModel *selModel = ui->experienceCategoryTableView->selectionModel();
+    QModelIndexList selIndexes = selModel->selectedIndexes();
+    if(selIndexes.count() == 0)
+    {
+        return;
+    }
+    QModelIndex index = selIndexes[0];
+    m_experienceCategoryController->deleteExperienceCategory(index);
+}
+
 
 void MainWindow::removeOrganization()
 {

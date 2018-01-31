@@ -25,12 +25,12 @@ QSqlTableModel* Organisation::getOrganisationModel()
     return m_OrganisationModel;
 }
 
-void Organisation::addOrganisation(const int &id, const QString &age)
+void Organisation::addOrganisation(const int &id, const QString &name)
 {
     QSqlQuery query;
     query.prepare("insert into Organizatie values (:id,:name);");
     query.bindValue(":id", id);
-    query.bindValue(":name", age);
+    query.bindValue(":name", name);
     if(!query.exec())
     {
         qDebug() << query.lastError();

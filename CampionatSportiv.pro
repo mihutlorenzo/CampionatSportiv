@@ -28,7 +28,10 @@ SOURCES += main.cpp\
     addorganizationdialog.cpp \
     controllerweightcategory.cpp \
     controllerexperiencecategory.cpp \
-    controllerorganization.cpp
+    controllerorganisation.cpp \
+    etapa.cpp \
+    controlleretapa.cpp
+
 
 
 HEADERS  += mainwindow.h \
@@ -46,7 +49,9 @@ HEADERS  += mainwindow.h \
     addorganizationdialog.h \
     controllerweightcategory.h \
     controllerexperiencecategory.h \
-    controllerorganization.h
+    controllerorganisation.h \
+    etapa.h \
+    controlleretapa.h
 
 
 FORMS    += mainwindow.ui \
