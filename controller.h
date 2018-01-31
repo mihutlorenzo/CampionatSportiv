@@ -26,6 +26,7 @@ public:
     //void getModels(QSqlRelationalTableModel * & model);
     QSqlTableModel* getModels();
     void deleteParticipant(QModelIndex &index);
+    void selectQuery();
 
 
 private:

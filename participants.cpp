@@ -14,7 +14,7 @@ Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
     m_participantsModel->setTable("Participant");
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Cnp"));
+    m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("CNP"));
     m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nume"));
     m_participantsModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenume"));
     m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Id_Varsta"));
@@ -95,6 +95,11 @@ void Participants::removeParticipant(QModelIndex &index)
     {
         qDebug() << query.lastError();
     }
+    m_participantsModel->select();
+}
+
+void Participants::selectQuery()
+{
     m_participantsModel->select();
 }
 

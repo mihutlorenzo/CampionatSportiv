@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     addorganizationdialog.cpp \
     controllerweightcategory.cpp \
     controllerexperiencecategory.cpp \
-    controllerorganisation.cpp
+    controllerorganisation.cpp \
+    clasament.cpp \
+    controllerclasament.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -46,7 +48,9 @@ HEADERS  += mainwindow.h \
     addorganizationdialog.h \
     controllerweightcategory.h \
     controllerexperiencecategory.h \
-    controllerorganisation.h
+    controllerorganisation.h \
+    clasament.h \
+    controllerclasament.h
 
 
 FORMS    += mainwindow.ui \

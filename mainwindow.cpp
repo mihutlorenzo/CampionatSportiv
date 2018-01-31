@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_weightCategoryController = new ControllerWeightCategory(*this,dataBase);
     m_experienceCategoryController = new ControllerExperienceCategory(*this,dataBase);
     m_organizationController = new ControllerOrganisation(*this,dataBase);
+    m_clasamentController = new ControllerClasament(*this,dataBase);
 
     m_tableActions = new QActionGroup(this);
     m_tableActions->addAction(ui->actionParticipants);
@@ -37,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_tableActions->addAction(ui->actionWeight_Category);
     m_tableActions->addAction(ui->actionExperience_Category);
     m_tableActions->addAction(ui->actionOrganization);
+    m_tableActions->addAction(ui->actionStages);
+    m_tableActions->addAction(ui->actionRanking);
 
     connect(m_tableActions, &QActionGroup::triggered, this, &MainWindow::onTableActionsTriggered);
     connect(ui->actionRefresh,&QAction::triggered, this, &MainWindow::onRefreshDB);
@@ -137,14 +140,9 @@ void MainWindow::setupTables()
     ui->weightCategoryTableView->setModel(m_weightCategoryController->getModels());
     ui->experienceCategoryTableView->setModel(m_experienceCategoryController->getModels());
     ui->organizationTableView->setModel(m_organizationController->getModels());
+    ui->rankingTableView->setModel(m_clasamentController->getModels());
 
-    /*QSqlQueryModel *m_workingHoursJoinPersonsModel = new QSqlQueryModel(this);
-    QSqlQuery query("SELECT * from Categorie_Varsta");
-    m_workingHoursJoinPersonsModel->setQuery(query);
-    m_workingHoursJoinPersonsModel->setHeaderData(0, Qt::Horizontal, tr("Id"));
-    m_workingHoursJoinPersonsModel->setHeaderData(1, Qt::Horizontal, tr("Varsta"));
 
-    ui->ageCategoryTableView->setModel(m_workingHoursJoinPersonsModel);*/
 
 }
 
@@ -237,9 +235,25 @@ void MainWindow::onTableActionsTriggered(QAction *action)
         ui->stackedWidget->setCurrentIndex(4);
         //ui->tablePersons->selectionModel()->clearSelection();
     }
+
+    if(action == ui->actionStages)
+    {
+        ui->stackedWidget->setCurrentIndex(5);
+        //ui->tablePersons->selectionModel()->clearSelection();
+    }
+    if(action == ui->actionRanking)
+    {
+        ui->stackedWidget->setCurrentIndex(5);
+        //ui->tablePersons->selectionModel()->clearSelection();
+    }
 }
 
 void MainWindow::onRefreshDB()
 {
+    m_participantController->selectQuery();
     m_ageCategoryController->selectQuery();
+    m_weightCategoryController->selectQuery();
+    m_experienceCategoryController->selectQuery();
+    m_organizationController->selectQuery();
+    m_clasamentController->selectQuery();
 }

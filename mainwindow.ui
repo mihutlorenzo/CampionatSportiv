@@ -138,6 +138,20 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_Stages">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QTableView" name="stageTableView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Ranking">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QTableView" name="rankingTableView"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -160,6 +174,8 @@
     <addaction name="actionWeight_Category"/>
     <addaction name="actionExperience_Category"/>
     <addaction name="actionOrganization"/>
+    <addaction name="actionStages"/>
+    <addaction name="actionRanking"/>
    </widget>
    <widget class="QMenu" name="menuEditTable">
     <property name="title">
@@ -217,6 +233,16 @@
   <action name="actionRefresh">
    <property name="text">
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionStages">
+   <property name="text">
+    <string>Stages</string>
+   </property>
+  </action>
+  <action name="actionRanking">
+   <property name="text">
+    <string>Ranking</string>
    </property>
   </action>
  </widget>

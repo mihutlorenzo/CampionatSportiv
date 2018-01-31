@@ -10,6 +10,7 @@
 #include "controllerweightcategory.h"
 #include "controllerexperiencecategory.h"
 #include "controllerorganisation.h"
+#include "controllerclasament.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,7 @@ class ControllerAgeCategory;
 class ControllerWeightCategory;
 class ControllerExperienceCategory;
 class ControllerOrganisation;
+class ControllerClasament;
 
 class MainWindow : public QMainWindow
 {
@@ -58,6 +60,7 @@ private:
     ControllerWeightCategory *m_weightCategoryController;
     ControllerExperienceCategory *m_experienceCategoryController;
     ControllerOrganisation *m_organizationController;
+    ControllerClasament *m_clasamentController;
 
 
 };

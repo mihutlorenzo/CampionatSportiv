@@ -51,5 +51,9 @@ void Controller::deleteParticipant(QModelIndex &index)
 {
     m_participants->removeParticipant(index);
 }
+void Controller::selectQuery()
+{
+    m_participants->selectQuery();
+}
 
 
