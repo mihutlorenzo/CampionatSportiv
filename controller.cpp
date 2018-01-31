@@ -41,7 +41,7 @@ void Controller::addParticipant()
     return m_participants->getParticipants();
 }*/
 
-QSqlTableModel* Controller::getModels()
+QSqlRelationalTableModel* Controller::getModels()
 {
     return m_participants->getParticipants();
 }

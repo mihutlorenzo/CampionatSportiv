@@ -10,16 +10,22 @@
 
 Participants::Participants(MainWindow& main,QSqlDatabase& dataBase)
 {
-    m_participantsModel = new QSqlTableModel(&main,dataBase);
+    m_participantsModel = new QSqlRelationalTableModel(&main,dataBase);
     m_participantsModel->setTable("Participant");
+
+    m_participantsModel->setRelation(3, QSqlRelation("Categorie_Varsta", "Id_Varsta", "varsta"));
+    m_participantsModel->setRelation(4, QSqlRelation("Categorie_Greutate", "Id_Greutate", "greutate"));
+   m_participantsModel->setRelation(5, QSqlRelation("Categorie_Experienta", "Id_Experienta", "experienta"));
+    m_participantsModel->setRelation(6, QSqlRelation("Organizatie", "Id_Organizatie", "nume"));
+
     m_participantsModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
     m_participantsModel->setHeaderData(0, Qt::Horizontal, QObject::tr("CNP"));
     m_participantsModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nume"));
     m_participantsModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenume"));
-    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Id_Varsta"));
-    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Id_Greutate"));
-    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Id_Experienta"));
-    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Id_Organizatie"));
+    m_participantsModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Varsta"));
+    m_participantsModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Greutate"));
+    m_participantsModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Experienta"));
+    m_participantsModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Organizatie"));
     m_participantsModel->select();
 }
 
@@ -78,7 +84,7 @@ void Participants::addParticipant(const QString& otherId,const QString& otherFir
     }
 }
 
-QSqlTableModel* Participants::getParticipants()
+QSqlRelationalTableModel* Participants::getParticipants()
 {
     return m_participantsModel;
 }

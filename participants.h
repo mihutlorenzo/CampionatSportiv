@@ -19,13 +19,13 @@ public:
     explicit Participants(MainWindow& main,QSqlDatabase& dataBase);
     ~Participants();
     void addParticipant(const QString& otherId,const QString& otherFirstName, const QString& otherLastName, const int& otherCategoryAgeId,const int& otherCategoryWeightId,const int& otherCategoryExperienceId, const int& otherOrganisationId);
-    QSqlTableModel* getParticipants();
+    QSqlRelationalTableModel* getParticipants();
     void removeParticipant(QModelIndex &index);
     void selectQuery();
 
 
 private:
-    QSqlTableModel* m_participantsModel;
+    QSqlRelationalTableModel* m_participantsModel;
 };
 
 #endif // PARTICIPANT_H

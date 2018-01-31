@@ -24,7 +24,7 @@ public:
     explicit Controller(MainWindow& main,QSqlDatabase& dataBase);
     void addParticipant();
     //void getModels(QSqlRelationalTableModel * & model);
-    QSqlTableModel* getModels();
+    QSqlRelationalTableModel* getModels();
     void deleteParticipant(QModelIndex &index);
     void selectQuery();
 
