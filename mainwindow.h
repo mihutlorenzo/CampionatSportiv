@@ -11,6 +11,8 @@
 #include "controllerexperiencecategory.h"
 #include "controllerorganisation.h"
 #include "controllerclasament.h"
+#include "controlleretapa.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +25,8 @@ class ControllerWeightCategory;
 class ControllerExperienceCategory;
 class ControllerOrganisation;
 class ControllerClasament;
+class ControllerEtapa;
+
 
 class MainWindow : public QMainWindow
 {
@@ -41,13 +45,11 @@ public slots:
     void addWeightCategory();
     void addExperienceCategory();
     void addOrganization();
-
     void removeParticipant();
     void removeAgeCategory();
     void removeWeightCategory();
     void removeExperienceCategory();
     void removeOrganization();
-
     void onTableActionsTriggered(QAction *action);
     void onRefreshDB();
 
@@ -61,6 +63,8 @@ private:
     ControllerExperienceCategory *m_experienceCategoryController;
     ControllerOrganisation *m_organizationController;
     ControllerClasament *m_clasamentController;
+    ControllerEtapa *m_etapaController;
+
 
 
 };

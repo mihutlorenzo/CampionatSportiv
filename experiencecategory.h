@@ -21,7 +21,7 @@ public:
 
 
 private:
-    QSqlTableModel* m_experienceCategoryModel;
+    QSqlTableModel *m_experienceCategoryModel;
 };
 
 

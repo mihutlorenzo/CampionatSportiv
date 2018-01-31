@@ -30,7 +30,11 @@ SOURCES += main.cpp\
     controllerexperiencecategory.cpp \
     controllerorganisation.cpp \
     clasament.cpp \
-    controllerclasament.cpp
+    controllerclasament.cpp \
+    etapa.cpp \
+    controlleretapa.cpp \
+
+
 
 
 HEADERS  += mainwindow.h \
@@ -50,7 +54,10 @@ HEADERS  += mainwindow.h \
     controllerexperiencecategory.h \
     controllerorganisation.h \
     clasament.h \
-    controllerclasament.h
+    controllerclasament.h \
+    etapa.h \
+    controlleretapa.h
+
 
 
 FORMS    += mainwindow.ui \
